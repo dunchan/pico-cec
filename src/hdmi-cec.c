@@ -517,7 +517,7 @@ void cec_task(void *data) {
 
   uint16_t paddr = ddc_get_physical_address();
   laddr = allocate_logical_address();
-
+  image_view_on(laddr, 0x00);//on start switch to this hdmi source
   while (true) {
     uint8_t pld[16] = {0x0};
     uint8_t pldcnt, pldcntrcvd;
