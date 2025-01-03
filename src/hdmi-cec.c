@@ -559,7 +559,7 @@ void cec_task(void *data) {
           break;
         case CEC_ID_ROUTING_CHANGE:
           paddr = ddc_get_physical_address();
-          image_view_on(laddr, 0x00);
+          //image_view_on(laddr, 0x00);//This will switch Philips TV to (laddr == paddr) , prevent to use other cec devices
           break;
         case CEC_ID_ACTIVE_SOURCE:
           printf("<*> [Turn the display ON]");
