@@ -644,7 +644,13 @@ void cec_task(void *data) {
                 printf(command.name);
                 xQueueSend(*q, &command.key, pdMS_TO_TICKS(10));
               } else {
-                printf("Unmapped command: 0x%02x\n", pld[2]);
+                if (pld[2] == 0x76)//Text button on Philips remote
+                {
+                  command.key = HID_KEY_F12;  // Assuming HID_KEY_F12 is defined as 0x7A
+                  xQueueSend(*q, &command.key, pdMS_TO_TICKS(10));
+                } else {
+                  printf("Unmapped command: 0x%02x\n", pld[2]);
+                }
               }
             }
           }
