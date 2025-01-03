@@ -652,7 +652,7 @@ void cec_task(void *data) {
         case CEC_ID_USER_CONTROL_RELEASED:
           gpio_put(PICO_DEFAULT_LED_PIN, false);
           key = HID_KEY_NONE;
-          xQueueSend(*q, &key, pdMS_TO_TICKS(10));
+          xQueueSend(*q, &key, pdMS_TO_TICKS(50));
           break;
         case CEC_ID_ABORT:
           printf("[Abort]");
