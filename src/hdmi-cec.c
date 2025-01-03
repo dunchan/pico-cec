@@ -579,7 +579,12 @@ void cec_task(void *data) {
           break;
         case CEC_ID_SET_STREAM_PATH:
           if (paddr != 0x0000) {
+            uint16_t received_paddr = (pld[2] << 8) | pld[3];  // Reconstruct the physical address
+            printf("paddr: %u, received_paddr: %u\n", paddr , received_paddr);
+            if (paddr == received_paddr)  // Only call active_source if paddr equals received_paddr
+            {
             active_source(laddr, paddr);
+            }
           }
           break;
         case CEC_ID_DEVICE_VENDOR_ID:
